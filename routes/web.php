@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\FaqController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +14,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::prefix('faq')->controller(FaqController::class)->group(function() {
+    Route::get('/', [FaqController::class, 'getAll']);
 });
