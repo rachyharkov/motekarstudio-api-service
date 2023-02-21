@@ -11,19 +11,13 @@ class SocialmediaController extends Controller
     {
         // if request is via API, return JSON
 
-        $arrheader = [];
-
-        if(env('ALLOW_CORS') == true) {
-            $arrheader = [
-                "Access-Control-Allow-Origin" => '*',
-            ];
-        }
-
         if (request()->wantsJson()) {
             return response()->json(
-                SocialMedia::select('question', 'answer')->get(),
+                SocialMedia::all(),
                 200,
-                $arrheader,
+                [
+                    "Access-Control-Allow-Origin" => 'https://motekarstudio.com'
+                ],
                 JSON_UNESCAPED_UNICODE
             );
         }
